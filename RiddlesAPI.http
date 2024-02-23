@@ -1,0 +1,6 @@
+@RiddlesAPI_HostAddress = http://localhost:7278
+
+GET {{RiddlesAPI_HostAddress}}/api/riddles
+Accept: application/json
+
+###
