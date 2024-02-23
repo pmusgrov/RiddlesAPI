@@ -11,14 +11,16 @@ namespace RiddlesAPI.Services
         public RiddlesService(
             IOptions<RiddlesDatabaseSettings> riddlesDatabaseSettings)
         {
-            var mongoClient = new MongoClient(
-                riddlesDatabaseSettings.Value.ConnectionString);
 
-            var mongoDatabase = mongoClient.GetDatabase(
-                riddlesDatabaseSettings.Value.DatabaseName);
+            string connectionString = Environment.GetEnvironmentVariable("MONGODB_CONNECTION_STRING");
+            string databaseName = Environment.GetEnvironmentVariable("MONGODB_DATABASE_NAME");
+            string collectionName = Environment.GetEnvironmentVariable("MONGODB_COLLECTION_NAME");
 
-            _riddlesCollection = mongoDatabase.GetCollection<Riddles>(
-                riddlesDatabaseSettings.Value.RiddlesCollectionName);
+            var mongoClient = new MongoClient(connectionString);
+
+            var mongoDatabase = mongoClient.GetDatabase(databaseName);
+
+            _riddlesCollection = mongoDatabase.GetCollection<Riddles>(collectionName);
         }
 
         public async Task<List<Riddles>> GetAsync() =>
