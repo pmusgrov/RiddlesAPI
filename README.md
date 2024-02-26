@@ -68,3 +68,6 @@ def test_get_methods():
         print(f"An error occurred: {e}")
 
 test_get_methods()
+
+##UML 
+<img width="332" alt="image" src="https://github.com/pmusgrov/RiddlesAPI/assets/114197693/31d6889b-69ef-44d3-ab82-446aaf71599f">
